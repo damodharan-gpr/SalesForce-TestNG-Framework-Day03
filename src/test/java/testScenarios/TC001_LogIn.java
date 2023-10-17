@@ -1,7 +1,7 @@
 package testScenarios;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import Base.BaseClass;
 import pages.LoginPage;
@@ -23,5 +23,4 @@ public class TC001_LogIn extends BaseClass {
 		.verifyElementsInHomePage();
 		Assert.assertTrue(verifyHomePage);
 	}
-
 }

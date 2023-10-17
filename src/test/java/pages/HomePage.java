@@ -1,9 +1,14 @@
 package pages;
 
+
+
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Base.BaseClass;
 
@@ -19,7 +24,8 @@ public class HomePage extends BaseClass {
 	private By clickStageDropBox = By.xpath("(//button[@aria-haspopup='listbox'])[1]");
 	private By clickStage = By.xpath("(//div[@role='listbox']/lightning-base-combobox-item)[4]");
 	private By clickSave = By.xpath("//button[@name='SaveEdit']");
-	private By clickLogOut = By.xpath("//div/span/div/span/img[@title='User']");
+	private By clickLogOutIcon = By.xpath("(//button[@type='button'])[7]");
+	private By clickLogOut = By.xpath("//div/a[contains(text(),'Log Out')]");
 	
 	public boolean verifyElementsInHomePage() {
 		if (driver.findElement(clickAppLauncher).isDisplayed()) {
@@ -92,13 +98,16 @@ public class HomePage extends BaseClass {
 		saveAction.click().perform();
 		return this;
 	}
-	
+	public HomePage clickLogOutIcon() throws Exception {
+		Actions clickLogOutAction = new Actions(driver);
+		WebElement clickLogOutImage = driver.findElement(clickLogOutIcon);
+		clickLogOutAction.moveToElement(clickLogOutImage).click().perform();
+		return this;
+	}
 	public LoginPage clickLogOut() {
-		WebElement selectImage = driver.findElement(clickLogOut);
-		Actions logoutAction = new Actions(driver);
-		logoutAction.click(selectImage).perform();
-		WebElement clickLogout = driver.findElement(By.xpath("//div/a[contains(text(),'Log Out')]"));
-		clickLogout.click();
+		WebDriverWait oWait = new WebDriverWait(driver, Duration.ofSeconds(3000));
+		oWait.until(ExpectedConditions.elementToBeClickable(clickLogOut));
+		driver.findElement(clickLogOut).click();
 		return new LoginPage();
 	}
 }
