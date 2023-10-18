@@ -5,6 +5,7 @@ package pages;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -99,12 +100,15 @@ public class HomePage extends BaseClass {
 		return this;
 	}
 	public HomePage clickLogOutIcon() throws Exception {
-		Actions clickLogOutAction = new Actions(driver);
-		WebElement clickLogOutImage = driver.findElement(clickLogOutIcon);
-		clickLogOutAction.moveToElement(clickLogOutImage).click().perform();
+		//WebElement clickLogOutImage = driver.findElement(clickLogOutIcon);
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Thread.sleep(3000);
+		js.executeScript("document.querySelector('li>span>button[type=\"button\"]').click();");
 		return this;
 	}
-	public LoginPage clickLogOut() {
+	public LoginPage clickLogOut() throws Exception {
+		Thread.sleep(3000);
 		WebDriverWait oWait = new WebDriverWait(driver, Duration.ofSeconds(3000));
 		oWait.until(ExpectedConditions.elementToBeClickable(clickLogOut));
 		driver.findElement(clickLogOut).click();
