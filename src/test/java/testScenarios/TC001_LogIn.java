@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import Base.BaseClass;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class TC001_LogIn extends BaseClass {
@@ -22,5 +23,14 @@ public class TC001_LogIn extends BaseClass {
 		.submitButton()
 		.verifyElementsInHomePage();
 		Assert.assertTrue(verifyHomePage);
+	}
+	
+	@Test(priority = 3)
+	public void userLogOut() throws Exception {
+		boolean verifyElementInLogInPage = new HomePage()
+		.clickLogOutIcon()
+		.clickLogOut()
+		.verifyElementInLogInPage();
+		Assert.assertTrue(verifyElementInLogInPage);
 	}
 }

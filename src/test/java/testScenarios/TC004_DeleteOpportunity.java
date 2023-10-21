@@ -10,11 +10,11 @@ import org.testng.Assert;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class TC002_CreateOpportunity extends BaseClass {
+public class TC004_DeleteOpportunity extends BaseClass {
 	
 	@BeforeTest
 	public void testingSetup() {
-		excelFileName = "TC002";
+		excelFileName = "TC004";
 	}
 	
 	@Test(priority = 1)
@@ -32,14 +32,12 @@ public class TC002_CreateOpportunity extends BaseClass {
 	}
 	
 	@Test(priority = 2, dataProvider = "SearchName")
-	public void toCreateNewOpporunity(String searchOpporunityName, String opporunityDate) throws Exception {
-		HomePage creatOpporunity = new HomePage();
-				creatOpporunity.clickNewButton()
-				.opportunityName(searchOpporunityName)
-				.closeDate(opporunityDate)
-				.clickStage()
-				.clickSave()
-				.clickOpportunityTab();
+	public void toDeleteOpporunity(String searchOpporunityName) throws Exception {
+		new HomePage()
+		.selectDeleteOpporunity(searchOpporunityName)
+		.selectDeleteDropDown()
+		.selectDelete()
+		.selectConfirmDelete();
 	}
 	
 	@Test(priority = 3)

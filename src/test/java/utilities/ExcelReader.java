@@ -7,7 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class DataProviderObject{
+public class ExcelReader{
 
 	public static Object[][] getValue(String sExcelName) throws Exception {
 		
@@ -56,15 +56,11 @@ public class DataProviderObject{
 									System.out.print("Error in Reading the Data ");
 									break;
 								}
-							data[i-1][j]  = cellValue; // add to the data array data[0][0] = iPhone,data[0][1] = Cell
-										
+							data[i-1][j]  = cellValue; // add to the data array data[0][0] = iPhone,data[0][1] = Cell				
 					}
-
-				 
 			}
 			fis.close();
 			workbook.close();
 		return data;
-
 	}
 }

@@ -8,7 +8,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 
+import utilities.ExcelReader;
 import utilities.PropertyReader;
 
 public class BaseClass {
@@ -16,6 +18,7 @@ public class BaseClass {
 	public static WebDriver driver;
 	public String browser = PropertyReader.readDataFromProperty("environment", "Browser");
 	public String url = PropertyReader.readDataFromProperty("environment", "ScalesForceURL");
+	public String excelFileName ="";
 	
   @BeforeClass
   public void invokeBrowser() {
@@ -52,4 +55,9 @@ public class BaseClass {
 	  driver.quit();
   }
 
+  @DataProvider(name = "SearchName")
+  public Object[][] getExcelData() throws Exception {
+	  Object texts[][] = ExcelReader.getValue(excelFileName);
+	  return texts;
+  }
 }
